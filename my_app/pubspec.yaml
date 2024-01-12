@@ -35,6 +35,15 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  get: ^4.6.5
+  auth_state_manager: ^0.2.1
+  flutter_secure_storage: ^8.1.0
+  modal_bottom_sheet: 
+    # See https://github.com/jamesblasco/modal_bottom_sheet/pull/315.
+    git:
+      url: https://github.com/jamesblasco/modal_bottom_sheet.git
+      ref: 38c6f44d0c4205608618a676a907c2d104d00b52
+      path: modal_bottom_sheet
 
 dev_dependencies:
   flutter_test:
