@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:my_app/controllers/login_controller.dart';
 import 'package:my_app/widgets/custom_button.dart';
 import 'package:my_app/widgets/login_bottom_sheet.dart';
 
@@ -12,6 +12,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  final controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,11 +23,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Welcome',
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 20,
-                    ),
+              Image.asset('assets/images/food.jpeg'),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Text(
+                  'Welcome',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 20,
+                      ),
+                ),
               ),
               Padding(
                 padding:
@@ -42,17 +47,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               CustomButton(
                   onTap: () {
+                    controller.email.clear();
+                     controller.fullName.clear();
+                      controller.password.clear();
+                    controller.onTabSelect(tab: 'Create');
                     LoginBottomSheet().login();
                   },
-                 image: SizedBox(),
+                  image: const SizedBox(),
                   text: 'Create Account',
+                  textColor: Colors.white,
+                  buttonColor: Colors.lightGreen,
                   isBusy: false),
               CustomButton(
                   onTap: () {
-                     LoginBottomSheet().login();
+                    controller.email.clear();
+                     controller.fullName.clear();
+                      controller.password.clear();
+                    controller.onTabSelect(tab: 'login');
+                    LoginBottomSheet().login();
                   },
-                 image: SizedBox(),
+                  image: SizedBox(),
                   text: 'Login',
+                  textColor: Colors.white,
+                  buttonColor: Colors.lightGreen,
                   isBusy: false),
               Padding(
                 padding:

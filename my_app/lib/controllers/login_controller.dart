@@ -27,4 +27,20 @@ class LoginController extends GetxController {
 
     Get.off(DashBoard());
   }
+
+  checkDetails(
+      {required String fullName,
+      required String email,
+      required String password}) async {
+    var name = await secureStorage.read(key: StorageKeys.ST_FULL_NAME) ?? '';
+    var email1 = await secureStorage.read(key: StorageKeys.ST_FULL_NAME) ?? '';
+    var passwordnew =
+        await secureStorage.read(key: StorageKeys.ST_FULL_NAME) ?? '';
+
+    if (name != fullName || email1 != email || passwordnew != email) {
+      Get.snackbar('', 'User Does not exist');
+    } else {
+      Get.offAll(const DashBoard());
+    }
+  }
 }

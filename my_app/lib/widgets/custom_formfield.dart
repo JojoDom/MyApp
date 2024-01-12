@@ -6,7 +6,7 @@ class CustomFormField extends StatelessWidget {
     Key? key,
     required TextEditingController controller,
     this.inputFormatters,
-    this.hintText,  this.enabled, this.autofocus,
+    this.hintText,  this.enabled, this.autofocus,  required this.osbcureText,
   })  : _controller = controller,
         super(key: key);
 
@@ -15,17 +15,24 @@ class CustomFormField extends StatelessWidget {
   final String? hintText;
    final bool? enabled;
    final bool? autofocus;
+   final bool osbcureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       textInputAction: TextInputAction.next,
-     
+     obscureText: osbcureText,
       enabled: enabled,
       autofocus: autofocus ?? false,
       inputFormatters: inputFormatters,
       controller: _controller,
-      
+      validator: (value) {
+   if (value!.isEmpty) {
+                                    return 'Please enter a valid value';
+                                  }
+                                  
+                                  return null;
+                                },
       cursorColor: const Color(0xFF2323360),
       style: const TextStyle(color:  Color(0xFF2323360), fontSize: 16, fontWeight: FontWeight.w500),
       decoration: InputDecoration(        

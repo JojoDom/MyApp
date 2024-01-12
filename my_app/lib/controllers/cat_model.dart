@@ -9,7 +9,7 @@ List<Cat> catFromJson(String str) => List<Cat>.from(json.decode(str).map((x) => 
 String catToJson(List<Cat> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Cat {
-    String id;
+    int id;
     String url;
     int width;
     int height;

@@ -25,32 +25,37 @@ class _DashBoardState extends State<DashBoard> {
           elevation: 0,
         ),
         body:  Obx(() => 
-          db.isLoading.isTrue?  const CircularProgressIndicator(color: Colors.blue,): CachedNetworkImage(
-            imageUrl: db.catImage.value,
-            imageBuilder: (context, imageProvider) => Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                shape: BoxShape.circle,
-                image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-              ),
-            ),
-            placeholder: (context, url) => Container(
-                height: 50,
-                width: 50,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 208, 202, 219),
-                  shape: BoxShape.circle,
-                )),
-            errorWidget: (context, url, error) => Container(
-                height: 50,
-                width: 50,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 208, 202, 219),
-                  shape: BoxShape.circle,
+          db.isLoading.isTrue?  Center(child:  CircularProgressIndicator(color: Colors.blue,)): Column(
+            children: [
+              Text('Meet Almighty'),
+              CachedNetworkImage(
+                imageUrl: db.catImage.value,
+                imageBuilder: (context, imageProvider) => Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+                  ),
                 ),
-                child: const Icon(Icons.person)),
+                placeholder: (context, url) => Container(
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 208, 202, 219),
+                      shape: BoxShape.circle,
+                    )),
+                errorWidget: (context, url, error) => Container(
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 208, 202, 219),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.person)),
+              ),
+            ],
           ),
         ));
   }

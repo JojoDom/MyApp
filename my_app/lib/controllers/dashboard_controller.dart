@@ -22,8 +22,9 @@ class DashBoardController extends GetxController {
   getCat() async {
     isLoading(true);
     await dio.get('https://api.thecatapi.com/v1/images/search').then((value) {
-      var response = Cat.fromJson(value.data);
-      catImage.value = response.url;
+      var response = value.data['url'];
+      print(response);
+      catImage.value = response;
       isLoading(false);
     });
   }

@@ -50,123 +50,134 @@ class _LoginComponentState extends State<LoginComponent> {
         ),
         body: Container(
           decoration: const BoxDecoration(color: Colors.white),
-          child: Form(
-            autovalidateMode: AutovalidateMode.always,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          loginController.onTabSelect(tab: 'Create');
-                        },
-                        child: Column(
-                          children: [
-                            const Text('Create Account'),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Container(
-                                height: 5,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  color: loginController.currentTab == 'Create'
-                                      ? Color.fromARGB(255, 171, 204, 232)
-                                      : Colors.transparent,
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(
+                    () => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            loginController.onTabSelect(tab: 'Create');
+                          },
+                          child: Column(
+                            children: [
+                              const Text('Create Account'),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  height: 5,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                    color: loginController.currentTab.value == 'Create'
+                                        ? Color.fromARGB(255, 171, 204, 232)
+                                        : Colors.transparent,
+                                  ),
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          loginController.onTabSelect(tab: 'login');
-                        },
-                        child: Column(
-                          children: [
-                            const Text('Login'),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Container(
-                                height: 5,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                  color: loginController.currentTab == 'login'
-                                      ? Color.fromARGB(255, 171, 204, 232)
-                                      : Colors.transparent,
+                        InkWell(
+                          onTap: () {
+                            loginController.onTabSelect(tab: 'login');
+                          },
+                          child: Column(
+                            children: [
+                              const Text('Login'),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Container(
+                                  height: 5,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                    color: loginController.currentTab.value == 'login'
+                                        ? Color.fromARGB(255, 171, 204, 232)
+                                        : Colors.transparent,
+                                  ),
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: Text('Full Name'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20, left: 20),
-                  child: CustomFormField(
-                    controller: loginController.fullName,
-                    hintText: 'Enter your full name',
+                  const SizedBox(
+                    height: 50,
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: Text('Email Address'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20, left: 20),
-                  child: CustomFormField(
-                    controller: loginController.email,
-                    hintText: 'Eg xyc@gmail.com',
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Text('Full Name'),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: Text('Password'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20, left: 20),
-                  child: CustomFormField(
-                    controller: loginController.password,
-                    hintText: '******',
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20, left: 20),
+                    child: CustomFormField(
+                      controller: loginController.fullName,
+                      osbcureText: false,
+                      hintText: 'Enter your full name',
+                    ),
                   ),
-                ),
-                CustomButton(
-                  onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                      loginController.login(
-                          fullName: loginController.fullName.text,
-                          email: loginController.email.text,
-                          password: loginController.password.text);
-                    }
-                  },
-                  image: SizedBox(),
-                  text: 'Resgistration',
-                  isBusy: false,
-                  buttonColor: loginController.password.text.isEmpty
-                      ? const Color.fromARGB(255, 224, 217, 217)
-                      : Colors.lightBlue,
-                ),
-                CustomButton(
-                  onTap: () {},
-                  image: SizedBox(),
-                  text: 'Sign up with Google',
-                  isBusy: false,
-                  buttonColor: Color.fromARGB(255, 224, 217, 217),
-                )
-              ],
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Text('Email Address'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20, left: 20),
+                    child: CustomFormField(
+                      osbcureText: false,
+                      controller: loginController.email,
+                      hintText: 'Eg xyc@gmail.com',
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Text('Password'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20, left: 20),
+                    child: CustomFormField(
+                      osbcureText: true,
+                      controller: loginController.password,
+                      hintText: '******',
+                    ),
+                  ),
+                  CustomButton(
+                    onTap: () {
+                      if(_formKey.currentState!.validate()){
+                        if(loginController.currentTab.value == 'Create'){
+                           loginController.login(
+                            fullName: loginController.fullName.text,
+                            email: loginController.email.text,
+                            password: loginController.password.text);
+                        }
+                        if(loginController.currentTab.value == 'login'){
+                           loginController.checkDetails(
+                            fullName: loginController.fullName.text,
+                            email: loginController.email.text,
+                            password: loginController.password.text);
+                        }
+                        
+                        
+                      }
+                        
+                      
+                    },
+                    image: SizedBox(),
+                    text:  loginController.currentTab.value=='login'? 'Login' :'Resgistration',
+                    isBusy: false,
+                    buttonColor: loginController.password.text.isEmpty
+                        ? const Color.fromARGB(255, 224, 217, 217)
+                        : Colors.lightBlue,
+                  ),
+                ],
+              ),
             ),
           ),
         ));
