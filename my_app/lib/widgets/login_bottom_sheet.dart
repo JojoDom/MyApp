@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:my_app/widgets/create_account.dart';
+import 'package:my_app/widgets/login.dart';
 
 class LoginBottomSheet {
   login() {
@@ -38,8 +40,9 @@ class _LoginComponentState extends State<LoginComponent> with TickerProviderStat
                      borderRadius: BorderRadius.circular(20)
                    ),),
                    centerTitle: true,
-        bottom: PreferredSize(
-        child: TabBar(
+        bottom: const PreferredSize(
+           preferredSize:  Size.fromHeight(50),
+        child:  TabBar(
           isScrollable: true,
           tabs: [
             Text('Create Account'),
@@ -47,12 +50,15 @@ class _LoginComponentState extends State<LoginComponent> with TickerProviderStat
           ],
           
         ), 
-        preferredSize: const Size.fromHeight(50),),
+       ),
         ),
-        body: SafeArea(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-          )),
+        body: TabBarView(
+          children: [
+            CreateAccount(),
+            Login()
+
+          ],
+        )
       ),
     );
   }
