@@ -25,7 +25,7 @@ class _DashBoardState extends State<DashBoard> {
           elevation: 0,
         ),
         body:  Obx(() => 
-          db.isLoading.isTrue?  Center(child:  CircularProgressIndicator(color: Colors.blue,)): Column(
+          db.isLoading.isTrue?  const Center(child:  CircularProgressIndicator(color: Colors.blue,)): Column(
             children: [
               const Text('Meet Almighty'),
               Center(
