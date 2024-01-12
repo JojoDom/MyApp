@@ -27,16 +27,16 @@ class _DashBoardState extends State<DashBoard> {
         body:  Obx(() => 
           db.isLoading.isTrue?  Center(child:  CircularProgressIndicator(color: Colors.blue,)): Column(
             children: [
-              Text('Meet Almighty'),
+              const Text('Meet Almighty'),
               Center(
                 child: CachedNetworkImage(
                   imageUrl: db.catImage.value,
                   imageBuilder: (context, imageProvider) => Container(
                     height: MediaQuery.of(context).size.height*0.5,
-                    width: MediaQuery.of(context).size.width*0.5,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      shape: BoxShape.circle,
+                      shape: BoxShape.rectangle,
                       image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
                     ),
                   ),
