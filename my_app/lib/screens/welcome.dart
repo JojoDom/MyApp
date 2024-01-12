@@ -44,14 +44,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   onTap: () {
                     LoginBottomSheet().login();
                   },
-                  image: const SizedBox(),
+                 image: SizedBox(),
                   text: 'Create Account',
                   isBusy: false),
               CustomButton(
                   onTap: () {
                      LoginBottomSheet().login();
                   },
-                  image: SizedBox(),
+                 image: SizedBox(),
                   text: 'Login',
                   isBusy: false),
               Padding(
