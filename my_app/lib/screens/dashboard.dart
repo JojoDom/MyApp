@@ -28,32 +28,28 @@ class _DashBoardState extends State<DashBoard> {
           db.isLoading.isTrue?  Center(child:  CircularProgressIndicator(color: Colors.blue,)): Column(
             children: [
               Text('Meet Almighty'),
-              CachedNetworkImage(
-                imageUrl: db.catImage.value,
-                imageBuilder: (context, imageProvider) => Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    shape: BoxShape.circle,
-                    image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-                  ),
-                ),
-                placeholder: (context, url) => Container(
-                    height: 50,
-                    width: 50,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 208, 202, 219),
+              Center(
+                child: CachedNetworkImage(
+                  imageUrl: db.catImage.value,
+                  imageBuilder: (context, imageProvider) => Container(
+                    height: MediaQuery.of(context).size.height*0.5,
+                    width: MediaQuery.of(context).size.width*0.5,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
                       shape: BoxShape.circle,
-                    )),
-                errorWidget: (context, url, error) => Container(
-                    height: 50,
-                    width: 50,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 208, 202, 219),
-                      shape: BoxShape.circle,
+                      image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
                     ),
-                    child: const Icon(Icons.person)),
+                  ),
+                 
+                  errorWidget: (context, url, error) => Container(
+                      height: 50,
+                      width: 50,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 208, 202, 219),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: const Icon(Icons.person)),
+                ),
               ),
             ],
           ),
